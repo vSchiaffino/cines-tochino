@@ -1,0 +1,26 @@
+{
+  "name": "cines-tochino",
+  "version": "1.0.0",
+  "description": "Backend de una web de cines. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vSchiaffino/cines-tochino.git"
+  },
+  "keywords": [
+    "nodejs",
+    "mysql"
+  ],
+  "author": "Valentín Schiaffino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vSchiaffino/cines-tochino/issues"
+  },
+  "homepage": "https://github.com/vSchiaffino/cines-tochino#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
