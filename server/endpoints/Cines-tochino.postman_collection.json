@@ -1,35 +1,20 @@
 {
 	"info": {
-		"_postman_id": "afa51437-152a-4601-bca4-82ff293af9ec",
+		"_postman_id": "9d691680-a424-4f83-8fd7-9953f5dec354",
 		"name": "Cines-tochino",
 		"description": "# Introduction\nWhat does your API do?\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\nWhat errors and status codes can a user expect?\n\n# Rate limit\nIs there a limit to the number of requests an user can send?",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "getPeliculas",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "getPeliculas",
-					"host": [
-						"getPeliculas"
-					]
-				},
-				"description": "Obtiene todas las películas disponibles"
-			},
-			"response": [
+			"name": "peliculas",
+			"item": [
 				{
-					"name": "Default",
-					"originalRequest": {
+					"name": "getPeliculas",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {
@@ -41,14 +26,239 @@
 							"host": [
 								"getPeliculas"
 							]
+						},
+						"description": "Obtiene todas las pelÃ­culas disponibles"
+					},
+					"response": [
+						{
+							"name": "Default",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "getPeliculas",
+									"host": [
+										"getPeliculas"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "getPelicula",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
 						}
 					},
-					"_postman_previewlanguage": null,
-					"header": null,
-					"cookie": [],
-					"body": ""
+					"response": []
+				},
+				{
+					"name": "postPelicula",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/peliculas",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"peliculas"
+							]
+						}
+					},
+					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "salas",
+			"item": [
+				{
+					"name": "newSala",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sudo_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"name\",\r\n    \"rows\": 10,\r\n    \"cols\": 10,\r\n    \"corridors\": [\r\n        {\"row\": 4, \"col\": 0},\r\n        {\"row\": 4, \"col\": 1},\r\n        {\"row\": 4, \"col\": 2},\r\n        {\"row\": 4, \"col\": 3},\r\n        {\"row\": 4, \"col\": 4},\r\n        {\"row\": 4, \"col\": 5},\r\n        {\"row\": 4, \"col\": 6},\r\n        {\"row\": 4, \"col\": 7},\r\n        {\"row\": 4, \"col\": 8},\r\n        {\"row\": 4, \"col\": 9}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/salas",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"salas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delSala",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sudo_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/salas/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"salas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modSala",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sudo_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"name\",\r\n    \"rows\": 10,\r\n    \"cols\": 10,\r\n    \"corridors\": [\r\n        {\"row\": 4, \"col\": 0},\r\n        {\"row\": 4, \"col\": 1},\r\n        {\"row\": 4, \"col\": 2},\r\n        {\"row\": 4, \"col\": 3},\r\n        {\"row\": 4, \"col\": 4},\r\n        {\"row\": 4, \"col\": 5},\r\n        {\"row\": 4, \"col\": 6},\r\n        {\"row\": 4, \"col\": 7},\r\n        {\"row\": 4, \"col\": 8},\r\n        {\"row\": 4, \"col\": 9}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/salas/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"salas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSalas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sudo_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/salas",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"salas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSala",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "users",
+			"item": [],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "funciones",
+			"item": [],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0ddfae78-0181-46d1-9902-e7646737be4e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6dc9b823-ffe2-4e3c-b0eb-563f942d5b9b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "34a5861a-06bb-40fa-8a5b-4a3ed4b2152e",
+			"key": "url",
+			"value": "http://localhost:3000"
 		}
 	],
 	"protocolProfileBehavior": {}

@@ -2,7 +2,7 @@
   "name": "cines-tochino",
   "version": "1.0.0",
   "description": "Backend de una web de cines. ",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
