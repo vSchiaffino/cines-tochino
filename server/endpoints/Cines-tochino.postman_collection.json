@@ -22,9 +22,12 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "getPeliculas",
+							"raw": "{{url}}/peliculas",
 							"host": [
-								"getPeliculas"
+								"{{url}}"
+							],
+							"path": [
+								"peliculas"
 							]
 						},
 						"description": "Obtiene todas las pelÃ­culas disponibles"
@@ -55,7 +58,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "{{url}}/peliculas/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"peliculas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
 						}
 					},
 					"response": []
@@ -64,7 +80,38 @@
 					"name": "postPelicula",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "844a8db879070204c0485c6c2e9e6d9067dc97aff5e9b934e2e1335dbb8a5023",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "titulo",
+									"value": "titulo",
+									"type": "text"
+								},
+								{
+									"key": "sinopsis",
+									"value": "sinopsis",
+									"type": "text"
+								},
+								{
+									"key": "estreno",
+									"value": "01/01/2001",
+									"type": "text"
+								},
+								{
+									"key": "director",
+									"value": "director",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
 							"raw": "{{url}}/peliculas",
 							"host": [
@@ -72,6 +119,61 @@
 							],
 							"path": [
 								"peliculas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "putPelicula",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sudo_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "titulo",
+									"value": "titulo",
+									"type": "text"
+								},
+								{
+									"key": "sinopsis",
+									"value": "sinopsis",
+									"type": "text"
+								},
+								{
+									"key": "estreno",
+									"value": "estreno",
+									"type": "text"
+								},
+								{
+									"key": "director",
+									"value": "director",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/peliculas/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"peliculas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -213,7 +315,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "{{url}}/salas/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"salas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
 						}
 					},
 					"response": []
@@ -223,12 +338,372 @@
 		},
 		{
 			"name": "users",
-			"item": [],
+			"item": [
+				{
+					"name": "newUser",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sudo_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombre",
+									"value": "nombre",
+									"type": "text"
+								},
+								{
+									"key": "usuario",
+									"value": "usuario",
+									"type": "text"
+								},
+								{
+									"key": "contraseña",
+									"value": "contraseña",
+									"type": "text"
+								},
+								{
+									"key": "mail",
+									"value": "mail",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modUser",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombre",
+									"value": "nombre",
+									"type": "text"
+								},
+								{
+									"key": "usuario",
+									"value": "usuario",
+									"type": "text"
+								},
+								{
+									"key": "contraseña",
+									"value": "contraseña",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loginUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "usuario",
+									"value": "usuario",
+									"type": "text"
+								},
+								{
+									"key": "contraseña",
+									"value": "contraseña",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/users/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "funciones",
-			"item": [],
+			"item": [
+				{
+					"name": "getFunciones",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}/funciones",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"funciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFuncion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/funciones/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"funciones",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newFuncion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sudo_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idpelicula",
+									"value": "idpelicula",
+									"type": "text"
+								},
+								{
+									"key": "idsala",
+									"value": "idsala",
+									"type": "text"
+								},
+								{
+									"key": "seatPrice",
+									"value": "price",
+									"type": "text"
+								},
+								{
+									"key": "formato",
+									"value": "formato",
+									"type": "text"
+								},
+								{
+									"key": "fecha",
+									"value": "fecha",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/funciones",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"funciones"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modFuncion",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idpelicula",
+									"value": "idpelicula",
+									"type": "text"
+								},
+								{
+									"key": "idsala",
+									"value": "idsala",
+									"type": "text"
+								},
+								{
+									"key": "seatPrice",
+									"value": "price",
+									"type": "text"
+								},
+								{
+									"key": "formato",
+									"value": "formato",
+									"type": "text"
+								},
+								{
+									"key": "fecha",
+									"value": "fecha",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/funciones/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"funciones",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delFuncion",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sudo_key}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/funciones/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"funciones",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "comprarTicket",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idusuario\": 0,\r\n    \"idfuncion\": 0,\r\n    \"seats\": [\r\n        {\r\n            \"row\": 0,\r\n            \"col\": 0\r\n        },\r\n        {\r\n            \"row\": 1,\r\n            \"col\": 0\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/funciones/comprar",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"funciones",
+								"comprar"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"protocolProfileBehavior": {}
 		}
 	],
@@ -256,7 +731,7 @@
 	],
 	"variable": [
 		{
-			"id": "34a5861a-06bb-40fa-8a5b-4a3ed4b2152e",
+			"id": "d43d5b5b-9f16-4709-b9e6-e40ff95c14d6",
 			"key": "url",
 			"value": "http://localhost:3000"
 		}
