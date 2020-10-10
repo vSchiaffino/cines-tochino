@@ -1,12 +1,13 @@
 const pool = require('./database')
 const { users } = require('./database/model')
 
-exports.verifyUser = (id, token, res) => {
-    let rows = pool.query(users.getByFilter({id}))
-    if(rows.length > 0 && rows[0].token == token){
-        res.json({ok: false, error: "You're not authorized to do that."})
+exports.verifyUser = async (id, token, res) => {
+    let rows = await pool.query(users.getByFilter({id}))
+    let row = rows[0]
+    if(rows.length > 0 && row.token == token){
         return true
     }
+    res.json({ok: false, error: "You're not authorized to do that."})
     return false
 }
 

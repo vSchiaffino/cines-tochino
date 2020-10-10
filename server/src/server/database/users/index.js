@@ -56,11 +56,17 @@ exports.loginUser = async (usuario) => {
 
 exports.modUser = async (usuario, id) => {
     // TODO Validaciones
-
+    
+    // ok!
     try {
+        usuario.contrasena = crypto.createHash('sha256')
+                                    .update(usuario.contrasena)
+                                    .digest('base64')
         let rows = await pool.query(users.updateRow(id, usuario))
         let ret = await pool.query(users.getByFilter({id}))
-        return {ok: true, user: ret}
+        let user = ret[0]
+        delete user.contrasena
+        return {ok: true, user}
     } catch (err) {
         console.log(err)
         return {ok: false, err: 'Error interno del servidor.'};

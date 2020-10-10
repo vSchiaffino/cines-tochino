@@ -1,4 +1,5 @@
-const { newUser, loginUser } = require("../database/users")
+const { verifyUser } = require("../checkAuthorization");
+const { newUser, loginUser, modUser } = require("../database/users")
 
 module.exports = (server) => {
     server.post('/users', async (req, res) => {
@@ -11,5 +12,11 @@ module.exports = (server) => {
         return res.json(ret)
     })
 
+    server.put('/users/:id', async (req, res) => {
+        if (await verifyUser(req.params.id, req.headers.authorization, res)) {
+            const ret = await modUser(req.body, req.params.id);
+            return res.json(ret);
+        }
+    })
     return server
 }
