@@ -8,9 +8,8 @@ exports.newUser = async (user) => {
     // Todo ok
     try {
         const cryptKey = `${process.env.SUDO_KEY}.${user.usuario}.${user.contrasena}.${Date.now()}`
-        let row = await pool.query("SELECT MAX(Id) as id FROM Users")
-        row = row[0]
-        user.id = row.id ? row.id + 1 : 1;
+        let rows = await pool.query(users.getNextId())
+        user.id = rows[0]["id"];
         user.token = crypto.createHash('sha256')
             .update(cryptKey)
             .digest('base64')
