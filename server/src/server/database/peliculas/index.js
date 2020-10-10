@@ -2,7 +2,7 @@ const { peliculas: peliculasModel, peliculas } = require('../model')
 const pool = require('../')
 
 exports.newPelicula = async (pelicula) => {
-    // Validaciones
+    // TODO Validaciones
 
     // ok!
     try
@@ -19,6 +19,9 @@ exports.newPelicula = async (pelicula) => {
 }
 
 exports.getPeliculas = async () => {
+    // TODO Validaciones
+
+    // ok!
     try
     {
         return await pool.query(peliculas.getAll());
@@ -31,6 +34,9 @@ exports.getPeliculas = async () => {
 }
 
 exports.getPelicula = async (id) => {
+    // TODO Validaciones
+
+    // ok!
     try {
         let rows = await pool.query(peliculas.getByFilter({id}));
         return rows.length == 0 ? false : rows[0]
@@ -40,7 +46,7 @@ exports.getPelicula = async (id) => {
 }
 
 exports.putPelicula = async (id, pelicula) =>{
-    // Validaciones
+    // TODO Validaciones
 
     // ok!
     try

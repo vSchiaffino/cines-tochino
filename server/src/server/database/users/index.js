@@ -3,7 +3,7 @@ const { users } = require('../model')
 const crypto = require('crypto')
 
 exports.newUser = async (user) => {
-    // Validaciones
+    // TODO Validaciones 
 
     // Todo ok
     try {
@@ -26,6 +26,7 @@ exports.newUser = async (user) => {
 }
 
 exports.loginUser = async (usuario) => {
+    // TODO Validaciones
     try {
         let rows = await pool.query(users.getByFilter({usuario: usuario.usuario}))
         if(rows.length == 0)
@@ -54,6 +55,8 @@ exports.loginUser = async (usuario) => {
 }
 
 exports.modUser = async (usuario, id) => {
+    // TODO Validaciones
+
     try {
         let rows = await pool.query(users.updateRow(id, usuario))
         let ret = await pool.query(users.getByFilter({id}))
