@@ -41,8 +41,9 @@ exports.users = new Database("users", {
     id: dbTypes.NUMBER,
     nombre: dbTypes.STRING,
     usuario: dbTypes.STRING,
-    contraseña: dbTypes.STRING,
-    mail: dbTypes.STRING
+    contrasena: dbTypes.STRING,
+    mail: dbTypes.STRING,
+    token: dbTypes.STRING
 })
 
 exports.seatsFunciones = new Database("seatsFunciones", {

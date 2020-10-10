@@ -1,0 +1,66 @@
+const pool = require("..")
+const { users } = require('../model')
+const crypto = require('crypto')
+
+exports.newUser = async (user) => {
+    // Validaciones
+
+    // Todo ok
+    try {
+        const cryptKey = `${process.env.SUDO_KEY}.${user.usuario}.${user.contrasena}.${Date.now()}`
+        let row = await pool.query("SELECT MAX(Id) as id FROM Users")
+        row = row[0]
+        user.id = row.id ? row.id + 1 : 1;
+        user.token = crypto.createHash('sha256')
+            .update(cryptKey)
+            .digest('base64')
+        user.contrasena = crypto.createHash('sha256')
+                                .update(user.contrasena)
+                                .digest('base64')
+        await pool.query(users.addRow(user))
+        delete user.contrasena
+        return user
+    } catch (err) {
+        console.log(err)
+        return false;
+    }
+}
+
+exports.loginUser = async (usuario) => {
+    try {
+        let rows = await pool.query(users.getByFilter({usuario: usuario.usuario}))
+        if(rows.length == 0)
+        {
+            return {ok: false, err: 'Credenciales incorrectas'};
+        }
+        else
+        {
+            usuario.contrasena = crypto.createHash('sha256')
+                                .update(usuario.contrasena)
+                                .digest('base64')
+            row = rows[0]
+            if(row.contrasena == usuario.contrasena)
+            {
+                return {ok: true, user: rows[0]}
+            }
+            else
+            {
+                return {ok: false, err: 'Credenciales incorrectas'};
+            }
+        }
+    } catch (err) {
+        console.log(err)
+        return {ok: false, err: 'Error interno del servidor.'};
+    }
+}
+
+exports.modUser = async (usuario, id) => {
+    try {
+        let rows = await pool.query(users.updateRow(id, usuario))
+        let ret = await pool.query(users.getByFilter({id}))
+        return {ok: true, user: ret}
+    } catch (err) {
+        console.log(err)
+        return {ok: false, err: 'Error interno del servidor.'};
+    }
+}
