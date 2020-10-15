@@ -1,0 +1,27 @@
+{
+  "name": "tochino",
+  "version": "1.0.0",
+  "description": "Simulación de una página web de cines",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "nodemon src/server/database/dao/genericDao.ts"
+  },
+  "author": "Schiaffino Valentín <valenschg@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@types/dateformat": "^3.0.1",
+    "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
+    "dateformat": "^3.0.3",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "util-promisify": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.8",
+    "@types/mysql": "^2.15.15",
+    "nodemon": "^2.0.5",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  }
+}
