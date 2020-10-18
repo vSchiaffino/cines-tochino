@@ -24,13 +24,13 @@ export class GenericDAO{
         let row = rows[0]
         row = this._deleteFields([row], deleteFields)[0]
         console.log(row)
-        return row
+        return row || {}
     }
 
     async updateOne(row: Row, pool: Pool, id: number): Promise<string> {
         try {
             // validar
-            if (this.model.validateRow(row, pool, this)){
+            if (await this.model.validateRow(row, pool, this)){
                 console.log(this.model.updateRow(row, id))
                 await pool.query(this.model.updateRow(row, id))
                 return ""
@@ -47,7 +47,7 @@ export class GenericDAO{
     async insertOne(row: Row, pool: Pool): Promise<string> {
         try {
             // validar
-            if (this.model.validateRow(row, pool, this)){
+            if (await this.model.validateRow(row, pool, this)){
                 console.log(this.model.newRow(row))
                 await pool.query(this.model.newRow(row))
                 return ""
@@ -66,9 +66,10 @@ export class GenericDAO{
     }
 
     async existeRecordConFiltros(filter: Row, pool: Pool): Promise<boolean>{
+        console.log(filter)
         let rows = await this.getByFilter(filter, pool)
         return new Promise<boolean>((resolve, reject) => {
-            resolve(rows.length > 0)
+            resolve(rows.length >= 1)
         })
     }
 
@@ -120,15 +121,15 @@ let pool = createPool({
     database: 'cinestochino'
 })
 
-let a = async () => {
-    console.log(await dao.updateOne({
-        titulo: 'Avengers cambiado',
-        sinopsis: 'Aburridisimo pero caro',
-        estreno: Date.now(),
-        director: 'Un tonto'
-    },
-    pool,
-    1))
-}
+// let a = async () => {
+//     console.log(await dao.updateOne({
+//         titulo: 'Avengers cambiado',
+//         sinopsis: 'Aburridisimo pero caro',
+//         estreno: Date.now(),
+//         director: 'Un tonto'
+//     },
+//     pool,
+//     1))
+// }
 
-a()
+// a()

@@ -4,7 +4,7 @@
   "description": "Simulación de una página web de cines",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "nodemon src/server/database/dao/genericDao.ts"
+    "dev": "nodemon src/index.ts"
   },
   "author": "Schiaffino Valentín <valenschg@gmail.com>",
   "license": "ISC",

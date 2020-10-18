@@ -21,7 +21,9 @@ export class Model{
 
             sets.push(`${fld} = ${val}`)
         })
-        return `UPDATE ${this.name} SET ${sets.join(', ')} WHERE id = ${id}`
+        let ret = `UPDATE ${this.name} SET ${sets.join(', ')} WHERE id = ${id}`
+        console.log(ret)
+        return ret
     }
 
     newRow(row: Row): string{
@@ -39,11 +41,15 @@ export class Model{
     
     getAll(): string{
         let fields: string[] = this.fields.map((f) => f.name)
-        return `SELECT ${fields.join(", ")} FROM ${this.name}`
+        let ret = `SELECT ${fields.join(", ")} FROM ${this.name}`
+        console.log(ret)
+        return ret
     }
     
     getOneById(id: number): string {
-        return `SELECT ${this.fields.map((f) => f.name).join(", ")} FROM ${this.name} WHERE id = ${id}`
+        let ret = `SELECT ${this.fields.map((f) => f.name).join(", ")} FROM ${this.name} WHERE id = ${id}`
+        console.log(ret)
+        return ret
     }
     
     getByFilter(filter: Row, filterOperator: Row = {}): string {
@@ -55,13 +61,21 @@ export class Model{
             let op = filterOperator[e[0]] == undefined ? "=" : filterOperator[e[0]]
             filt.push(`${field?.name} ${op} ${dbVal}`)
         })
-        return `SELECT ${this.fields.map((f) => f.name).join(', ')} FROM ${this.name} WHERE ${filt.join(' AND ')}`
+        let ret = `SELECT ${this.fields.map((f) => f.name).join(', ')} FROM ${this.name} WHERE ${filt.join(' AND ')}`
+        console.log(ret)
+        return ret
     }
 
-    validateRow(row: Row, pool: Pool, dao: GenericDAO) {
-        this.fields.forEach(f => {
-        if (row[f.name] != undefined && !f.validate(row[f.name], pool, dao)) return false
-        })
+    async validateRow(row: Row, pool: Pool, dao: GenericDAO) {
+        
+        for (let i = 0; i < this.fields.length; i++) {
+            const f = this.fields[i];
+            let res = await f.validate(row[f.name], pool, dao)
+            if (row[f.name] != undefined && !res){
+                console.log(`mal ${f.name}: ${row[f.name]}`)
+                return false
+            }
+        }
         return true
     }
 

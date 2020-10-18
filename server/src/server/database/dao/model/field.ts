@@ -10,8 +10,8 @@ export class Field{
         this.type = type
     }
 
-    validate(value: string | number, pool: Pool, dao: GenericDAO): boolean{
-        return this.type.validate(this.name, value, pool, dao)
+    async validate(value: string | number, pool: Pool, dao: GenericDAO): Promise<boolean>{
+        return await this.type.validate(this.name, value, pool, dao)
     }
 
     setDbVal(value: any): string {

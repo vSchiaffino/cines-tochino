@@ -12,14 +12,18 @@ export class Type{
         this.ai = ai
     }
 
-    validate(fieldName: string, value: string | number, pool: Pool, dao: GenericDAO) {
+    async validate(fieldName: string, value: string | number, pool: Pool, dao: GenericDAO): Promise<boolean> {
         if(!this.nullable && !this.ai && (value === "" || value === undefined)){
+            console.log(`Se ingreso valor null en el field ${fieldName} que es not nullable.`)
             throw Error(`Se ingreso valor null en el field ${fieldName} que es not nullable.`)
             return false
         }
-        if(this.unique) {
-            if (dao.existeRecordConFiltros({[fieldName]: value}, pool)) throw Error(`Intentando subir un valor duplicado a ${fieldName} con propiedad unique`)
-            return false
+        if(this.unique && value !== undefined) {
+            if (await dao.existeRecordConFiltros({[fieldName]: value}, pool)){
+                console.log(`valor duplicaod de ${fieldName}: ${value}`)
+                throw Error(`Intentando subir un valor duplicado a ${fieldName} con propiedad unique`)
+                return false
+            }
         }
         return true
     }
