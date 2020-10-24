@@ -1,6 +1,6 @@
 import { Response } from "express";
-import pool from './database'
-import usersDAO from "./database/daos/users";
+import pool from '../../database'
+import usersDAO from "../../database/daos/users";
 
 
 export function checkSUDO(token: string, res: Response) {

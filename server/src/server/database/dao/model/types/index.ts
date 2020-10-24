@@ -18,10 +18,9 @@ export class Varchar extends Type{
         let ret = await super.validate(fieldName, value, pool, dao)
         if(!ret) return false;
         if (this.length < value.length){
-            console.log(`length mal ${this.length} < ${value.length}`)
+            throw new Error(`length mal ${this.length} < ${value.length}`)
             return false
         }
-        console.log(`${fieldName} bien`)
         return true
     }
 
@@ -32,13 +31,12 @@ export class Varchar extends Type{
 
 export class Hash extends Varchar{
     constructor(nullable = false, pk = false, unique = false){
-        super(64, nullable, pk, unique, false)
+        super(1000, nullable, pk, unique, false)
     }
 
-    validate(fieldName: string, value: string, pool: Pool, dao: GenericDAO): Promise<boolean> {
-        return new Promise<boolean>((resolve, reject) => {
-            resolve(true);
-        })
+    async validate(fieldName: string, value: string, pool: Pool, dao: GenericDAO): Promise<boolean> {
+        super.validate(fieldName, value, pool, dao)
+        return true
     }
 
     setDbVal(value: string): string {

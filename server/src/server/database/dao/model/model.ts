@@ -2,6 +2,7 @@ import { GenericDAO } from './../genericDao';
 import { Pool } from 'mysql';
 import { Field } from './field';
 import { Row } from '../genericDao'
+import colors from 'colors'
 
 export class Model{
     name: string
@@ -22,7 +23,7 @@ export class Model{
             sets.push(`${fld} = ${val}`)
         })
         let ret = `UPDATE ${this.name} SET ${sets.join(', ')} WHERE id = ${id}`
-        console.log(ret)
+        // console.log(ret)
         return ret
     }
 
@@ -42,13 +43,13 @@ export class Model{
     getAll(): string{
         let fields: string[] = this.fields.map((f) => f.name)
         let ret = `SELECT ${fields.join(", ")} FROM ${this.name}`
-        console.log(ret)
+        // console.log(ret)
         return ret
     }
     
     getOneById(id: number): string {
         let ret = `SELECT ${this.fields.map((f) => f.name).join(", ")} FROM ${this.name} WHERE id = ${id}`
-        console.log(ret)
+        // console.log(ret)
         return ret
     }
     
@@ -62,20 +63,25 @@ export class Model{
             filt.push(`${field?.name} ${op} ${dbVal}`)
         })
         let ret = `SELECT ${this.fields.map((f) => f.name).join(', ')} FROM ${this.name} WHERE ${filt.join(' AND ')}`
-        console.log(ret)
+        // console.log(ret)
         return ret
     }
 
-    async validateRow(row: Row, pool: Pool, dao: GenericDAO) {
-        
+    async validateRow(row: Row, pool: Pool, dao: GenericDAO, esPut: Boolean = false) {
+        console.log(colors.blue("==============="))
+        console.log(colors.magenta(`[VALIDATING ROW] ----- ${dao.model.name} `))
         for (let i = 0; i < this.fields.length; i++) {
             const f = this.fields[i];
-            let res = await f.validate(row[f.name], pool, dao)
-            if (row[f.name] != undefined && !res){
-                console.log(`mal ${f.name}: ${row[f.name]}`)
-                return false
-            }
+	    if(esPut && row[f.name] != undefined){
+		let res = await f.validate(row[f.name], pool, dao)
+                if (row[f.name] != undefined && !res){
+	            console.log(colors.red(`ERROR EN: ${f.name}: ${row[f.name]}`))
+	            console.log(colors.blue("==============="))
+		    return false
+	        }
+	    }
         }
+        console.log(colors.blue("==============="))
         return true
     }
 

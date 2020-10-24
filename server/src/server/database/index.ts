@@ -6,7 +6,7 @@ var pool = createPool({
     port: 3306,
     user: 'root',
     password: 'root',
-    database: 'cinestochino'
+    database: 'cinestochino',
 })
 
 export default pool

@@ -2,7 +2,7 @@ import { Type } from './model/types/type';
 import { Model } from './model/model';
 import { Query, Pool, createPool } from "mysql"
 import { Field } from './model/field';
-import { Date_t, ID, Varchar } from './model/types';
+import { Date_t, ID, Int, Varchar } from './model/types';
 
 
 export class GenericDAO{
@@ -19,6 +19,14 @@ export class GenericDAO{
         return rows;
     }
 
+    async getAllFromView(viewName: string, pool: Pool, deleteFields: string[] = []){
+        return this._deleteFields(await this._doQuery(`SELECT * FROM ${viewName}`, pool), deleteFields)
+    }
+
+    async getOneFromView(viewName: string, pool: Pool, id: string,  deleteFields: string[] = []) {
+        return this._deleteFields(await this._doQuery(`SELECT * FROM ${viewName} WHERE 1 = 1 AND id = ${id}`, pool), deleteFields)
+    }
+
     async getOneById(id: number, pool: Pool, deleteFields: string[] = []): Promise<Row>{
         let rows = await this._doQuery(this.model.getOneById(id), pool)
         let row = rows[0]
@@ -30,7 +38,7 @@ export class GenericDAO{
     async updateOne(row: Row, pool: Pool, id: number): Promise<string> {
         try {
             // validar
-            if (await this.model.validateRow(row, pool, this)){
+            if (await this.model.validateRow(row, pool, this, true)){
                 console.log(this.model.updateRow(row, id))
                 await pool.query(this.model.updateRow(row, id))
                 return ""
@@ -49,12 +57,12 @@ export class GenericDAO{
             // validar
             if (await this.model.validateRow(row, pool, this)){
                 console.log(this.model.newRow(row))
-                await pool.query(this.model.newRow(row))
+		await pool.query(this.model.newRow(row))
                 return ""
             }
             return ""
         } catch (err) {
-            console.log("error")
+            console.log(err)
             return (err as Error).message
         }
         // ok
@@ -66,7 +74,6 @@ export class GenericDAO{
     }
 
     async existeRecordConFiltros(filter: Row, pool: Pool): Promise<boolean>{
-        console.log(filter)
         let rows = await this.getByFilter(filter, pool)
         return new Promise<boolean>((resolve, reject) => {
             resolve(rows.length >= 1)

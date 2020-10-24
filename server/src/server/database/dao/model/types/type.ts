@@ -1,5 +1,6 @@
 import { GenericDAO } from './../../genericDao';
 import { Pool } from 'mysql';
+import colors from 'colors'
 export class Type{
     nullable: boolean
     pk: boolean
@@ -13,18 +14,18 @@ export class Type{
     }
 
     async validate(fieldName: string, value: string | number, pool: Pool, dao: GenericDAO): Promise<boolean> {
+        console.log(`${colors.grey(fieldName)} -> ${colors.green(value?.toString())}`)
         if(!this.nullable && !this.ai && (value === "" || value === undefined)){
-            console.log(`Se ingreso valor null en el field ${fieldName} que es not nullable.`)
             throw Error(`Se ingreso valor null en el field ${fieldName} que es not nullable.`)
             return false
         }
         if(this.unique && value !== undefined) {
             if (await dao.existeRecordConFiltros({[fieldName]: value}, pool)){
-                console.log(`valor duplicaod de ${fieldName}: ${value}`)
                 throw Error(`Intentando subir un valor duplicado a ${fieldName} con propiedad unique`)
                 return false
             }
         }
+        console.log(colors.green("OK!"))
         return true
     }
 
