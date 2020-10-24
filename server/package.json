@@ -4,7 +4,8 @@
   "description": "Simulación de una página web de cines",
   "main": "src/index.ts",
   "scripts": {
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "pro": "nodemon src/server/database/dao/genericDao.ts"
   },
   "author": "Schiaffino Valentín <valenschg@gmail.com>",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "dateformat": "^3.0.3",
     "express": "^4.17.1",
     "mysql": "^2.18.1",
+    "readline": "^1.3.0",
     "util-promisify": "^2.1.0"
   },
   "devDependencies": {
