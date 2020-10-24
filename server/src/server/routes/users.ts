@@ -27,10 +27,10 @@ export default function users(app: Application)
         return res.json(ret)
     })
     app.put("/users/:id", async (req, res) => {
-	showRequest("putUsers", req)
-	if(await checkUser(req.headers.authorization || '', Number(req.params.id), res)){
-	    return res.json(await usersDAO.updateOne(req.body, pool, Number(req.params.id)))    
-	}
+        showRequest("putUsers", req)
+        if(await checkUser(req.headers.authorization || '', Number(req.params.id), res)){
+            return res.json(await usersDAO.updateOne(req.body, pool, Number(req.params.id)))    
+        }
     })
     
     

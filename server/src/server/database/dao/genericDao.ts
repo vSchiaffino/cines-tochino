@@ -57,7 +57,7 @@ export class GenericDAO{
             // validar
             if (await this.model.validateRow(row, pool, this)){
                 console.log(this.model.newRow(row))
-		await pool.query(this.model.newRow(row))
+		        await pool.query(this.model.newRow(row))
                 return ""
             }
             return ""
@@ -69,6 +69,25 @@ export class GenericDAO{
 
     }
 
+    async insertList(rows: Row[], pool: Pool): Promise<string> {
+        try {
+            let querys: string[] = []
+            
+            for (let i = 0; i < rows.length; i++) {
+                const r = rows[i];
+                if (await this.model.validateRow(r, pool, this)) {
+                    querys.push(this.model.newRow(r))
+                }
+            }
+            let q = querys.join("; ")
+            console.log(`query: ${q}`)
+            await this._doQuery(q, pool)
+            return ""
+        } catch (err) {
+            return err
+        }
+    }
+
     async getByFilter(filter: Row, pool: Pool, deleteFields: string[] = []): Promise<Row[]>{
         return  this._deleteFields(await this._doQuery(this.model.getByFilter(filter), pool), deleteFields)
     }
@@ -77,6 +96,15 @@ export class GenericDAO{
         let rows = await this.getByFilter(filter, pool)
         return new Promise<boolean>((resolve, reject) => {
             resolve(rows.length >= 1)
+        })
+    }
+
+    async getNextId(pool: Pool): Promise<Number> {
+        return new Promise<Number>(async (resolve, reject) => {
+            let res = await this._doQuery(`SELECT MAX(id) as id FROM ${this.model.name}`, pool);
+            // console.log(res[0].id || 1)
+            let ret = res[0].id == null ? 1 : Number(res[0].id) + 1;
+            resolve(ret)
         })
     }
 
@@ -109,34 +137,27 @@ export interface Row{
     [field: string]: string | number
 }
 
-let model = new Model("peliculas", [
-    new Field("id", new ID()),
-    new Field("titulo", new Varchar(100)),
-    new Field("sinopsis", new Varchar(700)),
-    new Field("estreno", new Date_t()),
-    new Field("director", new Varchar(100))
-])
+// let model = new Model("peliculas", [
+//     new Field("id", new ID()),
+//     new Field("titulo", new Varchar(100)),
+//     new Field("sinopsis", new Varchar(700)),
+//     new Field("estreno", new Date_t()),
+//     new Field("director", new Varchar(100))
+// ])
 
-let dao = new GenericDAO(model)
+// let dao = new GenericDAO(model)
 
 
-let pool = createPool({
-    host: 'localhost',
-    port: 3306,
-    user: 'root',
-    password: 'root',
-    database: 'cinestochino'
-})
+// let pool = createPool({
+//     host: 'localhost',
+//     port: 3306,
+//     user: 'root',
+//     password: 'root',
+//     database: 'cinestochino'
+// })
 
 // let a = async () => {
-//     console.log(await dao.updateOne({
-//         titulo: 'Avengers cambiado',
-//         sinopsis: 'Aburridisimo pero caro',
-//         estreno: Date.now(),
-//         director: 'Un tonto'
-//     },
-//     pool,
-//     1))
+//     dao.getNextId(pool)
 // }
 
 // a()

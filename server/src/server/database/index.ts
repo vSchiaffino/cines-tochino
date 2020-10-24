@@ -7,6 +7,8 @@ var pool = createPool({
     user: 'root',
     password: 'root',
     database: 'cinestochino',
+    multipleStatements: true
 })
 
 export default pool
+require('./sql')

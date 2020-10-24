@@ -19,18 +19,16 @@ export default function funciones(app: Application)
 
     app.post('/funciones', async(req, res) => {
         if(checkSUDO(req.headers.authorization || '', res)){
-	    showRequest("newFuncion", req)
-	    return res.json(await daoFunciones.insertOne(req.body, pool))
-	}
-
+            showRequest("newFuncion", req)
+            return res.json(await daoFunciones.insertOne(req.body, pool))
+	    }
     })
     
     app.put('/funciones/:id', async (req, res) => {
-	if (checkSUDO(req.headers.authorization || '', res)) {
-	    showRequest("newFuncion", req)
-	    return res.json(await daoFunciones.updateOne(req.body, pool, Number(req.params.id)))
-	}
-
+        if (checkSUDO(req.headers.authorization || '', res)) {
+            showRequest("newFuncion", req)
+            return res.json(await daoFunciones.updateOne(req.body, pool, Number(req.params.id)))
+        }
     })
 
     return app
