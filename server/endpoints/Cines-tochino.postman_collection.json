@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9d691680-a424-4f83-8fd7-9953f5dec354",
+		"_postman_id": "a76a1c74-6adb-4943-8e6b-9bfdff386566",
 		"name": "Cines-tochino",
 		"description": "# Introduction\nWhat does your API do?\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\nWhat errors and status codes can a user expect?\n\n# Rate limit\nIs there a limit to the number of requests an user can send?",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -92,22 +92,22 @@
 							"urlencoded": [
 								{
 									"key": "titulo",
-									"value": "titulo",
+									"value": "alta peli",
 									"type": "text"
 								},
 								{
 									"key": "sinopsis",
-									"value": "sinopsis",
+									"value": "mucho texto",
 									"type": "text"
 								},
 								{
 									"key": "estreno",
-									"value": "01/01/2001",
+									"value": "2001-11-18",
 									"type": "text"
 								},
 								{
 									"key": "director",
-									"value": "director",
+									"value": "valen",
 									"type": "text"
 								}
 							]
@@ -198,7 +198,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"name\",\r\n    \"rows\": 10,\r\n    \"cols\": 10,\r\n    \"corridors\": [\r\n        {\"row\": 4, \"col\": 0},\r\n        {\"row\": 4, \"col\": 1},\r\n        {\"row\": 4, \"col\": 2},\r\n        {\"row\": 4, \"col\": 3},\r\n        {\"row\": 4, \"col\": 4},\r\n        {\"row\": 4, \"col\": 5},\r\n        {\"row\": 4, \"col\": 6},\r\n        {\"row\": 4, \"col\": 7},\r\n        {\"row\": 4, \"col\": 8},\r\n        {\"row\": 4, \"col\": 9}\r\n    ]\r\n}",
+							"raw": "{\r\n    \"nombresala\": \"name2\",\r\n    \"rows\": 10,\r\n    \"cols\": 10,\r\n    \"corridors\": [\r\n        {\"row\": 4, \"col\": 0},\r\n        {\"row\": 4, \"col\": 1},\r\n        {\"row\": 4, \"col\": 2},\r\n        {\"row\": 4, \"col\": 3},\r\n        {\"row\": 4, \"col\": 4},\r\n        {\"row\": 4, \"col\": 5},\r\n        {\"row\": 4, \"col\": 6},\r\n        {\"row\": 4, \"col\": 7},\r\n        {\"row\": 4, \"col\": 8},\r\n        {\"row\": 4, \"col\": 9}\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -240,7 +240,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "1"
 								}
 							]
 						}
@@ -326,7 +326,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": ""
+									"value": "1"
 								}
 							]
 						}
@@ -360,11 +360,11 @@
 								},
 								{
 									"key": "usuario",
-									"value": "usuario",
+									"value": "user",
 									"type": "text"
 								},
 								{
-									"key": "contraseña",
+									"key": "contrasena",
 									"value": "contraseña",
 									"type": "text"
 								},
@@ -453,11 +453,11 @@
 							"urlencoded": [
 								{
 									"key": "usuario",
-									"value": "usuario",
+									"value": "user",
 									"type": "text"
 								},
 								{
-									"key": "contraseña",
+									"key": "contrasena",
 									"value": "contraseña",
 									"type": "text"
 								}
@@ -702,6 +702,197 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getSalafuncion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/salafuncion/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"salafuncion",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "reservas",
+			"item": [
+				{
+					"name": "newReserva",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "jvSTN7Yg6cWVFQvpDsqNaksBX76zkKJlbOR4d+tscZQ=",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idfuncion",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "row",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "col",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/reservas",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reservas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/reservas/:id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/reservas/:id",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reservas",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "categorias",
+			"item": [
+				{
+					"name": "newCategoria",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sudo_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "nombre",
+									"value": "Humor",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/categorias",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "newCategoriaPelicula",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{sudo_key}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "idcategoria",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "idpelicula",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/peliculascategoria",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"peliculascategoria"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCategorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/categorias",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categorias"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -711,7 +902,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "0ddfae78-0181-46d1-9902-e7646737be4e",
+				"id": "f892685d-311a-4b78-998f-f85d4f579e5f",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -721,7 +912,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "6dc9b823-ffe2-4e3c-b0eb-563f942d5b9b",
+				"id": "cdc91fd7-db91-484b-82f1-b68fd200e177",
 				"type": "text/javascript",
 				"exec": [
 					""
