@@ -12,6 +12,14 @@ export class Model{
         this.fields = fields
     }
 
+    deleteByFilter(filter: Row, filterOperator: Row = {}): string {
+        return `DELETE FROM ${this.name} WHERE ${this._doWhere(filter, filterOperator)}`
+    }
+
+    deleteOneById(id: string): string {
+        return `DELETE FROM ${this.name} WHERE id = ${id}`
+    }
+
     updateRow(row: Row, id: number): string {
         let sets: string[] = []
         Object.entries(row).map(e =>{
@@ -54,6 +62,12 @@ export class Model{
     }
     
     getByFilter(filter: Row, filterOperator: Row = {}): string {
+        let ret = `SELECT ${this.fields.map((f) => f.name).join(', ')} FROM ${this.name} WHERE ${this._doWhere(filter, filterOperator)}`
+        // console.log(ret)
+        return ret
+    }
+
+    _doWhere(filter: Row, filterOperator: Row = {}): string {
         let filt: String[] = []
         Object.entries(filter).forEach((e) => {
             let field = this.getFieldByName(e[0])
@@ -62,9 +76,7 @@ export class Model{
             let op = filterOperator[e[0]] == undefined ? "=" : filterOperator[e[0]]
             filt.push(`${field?.name} ${op} ${dbVal}`)
         })
-        let ret = `SELECT ${this.fields.map((f) => f.name).join(', ')} FROM ${this.name} WHERE ${filt.join(' AND ')}`
-        // console.log(ret)
-        return ret
+        return filt.join(' AND ')
     }
 
     async validateRow(row: Row, pool: Pool, dao: GenericDAO, esPut: Boolean = false) {

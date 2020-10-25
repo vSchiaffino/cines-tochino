@@ -9,7 +9,6 @@ let salaDAO = new GenericDAO(
         "sala",
         [
             new Field("id", new ID()),
-            new Field("idformasala", new Int()),
             new Field("nombresala", new Varchar(50, false)),
             new Field("rows", new Int()),
             new Field("cols", new Int()),

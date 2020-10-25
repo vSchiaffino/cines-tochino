@@ -11,6 +11,33 @@ export class GenericDAO{
         this.model = model
     }
 
+    async deleteByFilter(filter: Row, pool: Pool): Promise<string> {
+        return new Promise<string>((resolve, reject) => {
+            pool.query(this.model.deleteByFilter(filter), (err, res) => {
+                if(err) reject(err)
+                else{
+                    resolve("")
+                }
+            })
+        })
+    }
+
+    async deleteById(id: string, pool: Pool): Promise<string> {
+        return new Promise<string>((resolve, reject) => {
+            try {
+                pool.query(this.model.deleteOneById(id), (err, result) => {
+                    if(err) return err;
+                    else {
+                        resolve("")
+                    }
+                })
+            } catch (error) {
+                reject(error)
+            }
+        })
+
+    }
+
     async getAll(pool: Pool, deleteFields: string[] = []): Promise<Row[]>{
         // ta ok
         let rows = await this._doQuery(this.model.getAll(), pool)
