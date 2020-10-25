@@ -10,9 +10,11 @@
   "author": "Schiaffino Valentín <valenschg@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@types/cors": "^2.8.8",
     "@types/dateformat": "^3.0.1",
     "body-parser": "^1.19.0",
     "colors": "^1.4.0",
+    "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dateformat": "^3.0.3",
     "express": "^4.17.1",

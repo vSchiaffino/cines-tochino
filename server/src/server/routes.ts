@@ -1,4 +1,5 @@
 import { Application } from "express";
+import categorias from "./routes/categorias";
 import funciones from "./routes/funciones";
 import peliculas from "./routes/peliculas";
 import reservas from "./routes/reservas";
@@ -12,5 +13,6 @@ export default function routes(app: Application)
     app = salasRoute(app)
     app = users(app)
     app = reservas(app)
+    app = categorias(app)
     return app
 }

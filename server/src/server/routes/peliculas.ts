@@ -3,17 +3,21 @@ import { checkSUDO } from "./helpers/authorization";
 import pool from "../database";
 import peliculasDAO from "../database/daos/peliculas";
 import { showRequest } from "./helpers/routeHelper";
+import peliculasCategoriasDAO from "../database/daos/peliculas_categorias";
 
 export default function peliculas(app: Application)
 {
     app.get("/peliculas", async (req, res) => {
         showRequest("getPeliculas", req)
-        res.json(await peliculasDAO.getAll(pool))
+        let peliculas = await peliculasDAO.getAll(pool)
+        let peliculasCategorias = await peliculasCategoriasDAO.getAll(pool)
+        llenarCategorias(peliculas, peliculasCategorias)
+        res.json(peliculas)
     })
 
     app.get("/peliculas/:id", async(req, res) => {
         showRequest("getPelicula", req)
-
+        
         let ret = await peliculasDAO.getOneById(Number(req.params.id), pool)
         res.json( ret == {} ? {ok: false, error: 'No existe pelicula con ese id.'} : ret)
     })
@@ -35,4 +39,15 @@ export default function peliculas(app: Application)
         }  
     })
     return app
+}
+
+function llenarCategorias(peliculas: any[], peliculasCategorias: any[]) {
+    peliculas.forEach(p => {
+        p.categorias = []
+        peliculasCategorias.forEach(pc => {
+            if(p.id == pc.idpelicula) {
+                p.categorias.push(pc.idcategoria)
+            }
+        })
+    });
 }

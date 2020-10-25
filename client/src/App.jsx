@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import Home from './components/home'
-import Peliculas from './components/peliculas'
-import Cuenta from './components/cuenta'
-import Nosotros from './components/nosotros'
+import Home from './pages/home'
+import Peliculas from './pages/peliculas'
+import Cuenta from './pages/cuenta'
+import Nosotros from './pages/nosotros'
+import Nav from './pages/nav'
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Nav from './components/nav'
 
 export default class App extends Component {
   render() {

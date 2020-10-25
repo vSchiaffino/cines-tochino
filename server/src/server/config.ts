@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import { Application, Express, json } from 'express';
 import routes from './routes';
+import cors from 'cors'
 
 export default function config(app: Application): Application {
     // ENV VARIABLES
@@ -9,6 +10,7 @@ export default function config(app: Application): Application {
     // MIDDLEWARES
     app.use(json())
     app.use(bodyParser.urlencoded({ extended: false }))
+    app.use(cors())
     // ROUTES
     app = routes(app)
     // RETURN

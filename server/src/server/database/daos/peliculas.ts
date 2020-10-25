@@ -12,6 +12,7 @@ let peliculasDAO = new GenericDAO(
             new Field("sinopsis", new Varchar(700, false)),
             new Field("estreno", new Date_t(false)),
             new Field("director", new Varchar(100, false)),
+            new Field("img", new Varchar(1000, false))
         ]
     )
 )
