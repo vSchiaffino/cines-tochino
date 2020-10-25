@@ -14,7 +14,7 @@ export class Field{
         return await this.type.validate(this.name, value, pool, dao)
     }
 
-    setDbVal(value: any): string {
-        return this.type.setDbVal(value)
+    setDbVal(value: any, isFilter = false): string {
+        return this.type.setDbVal(value, isFilter)
     }
 }

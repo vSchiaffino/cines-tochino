@@ -61,18 +61,18 @@ export class Model{
         return ret
     }
     
-    getByFilter(filter: Row, filterOperator: Row = {}): string {
-        let ret = `SELECT ${this.fields.map((f) => f.name).join(', ')} FROM ${this.name} WHERE ${this._doWhere(filter, filterOperator)}`
+    getByFilter(filter: Row, filterOperator: Row = {}, isFilter = false): string {
+        let ret = `SELECT ${this.fields.map((f) => f.name).join(', ')} FROM ${this.name} WHERE ${this._doWhere(filter, filterOperator, isFilter)}`
         // console.log(ret)
         return ret
     }
 
-    _doWhere(filter: Row, filterOperator: Row = {}): string {
+    _doWhere(filter: Row, filterOperator: Row = {}, isFilter = false): string {
         let filt: String[] = []
         Object.entries(filter).forEach((e) => {
             let field = this.getFieldByName(e[0])
             if(!field ) throw("Filtro invalido, no existe ese field.")
-            let dbVal = field?.setDbVal(e[1])
+            let dbVal = field?.setDbVal(e[1], isFilter)
             let op = filterOperator[e[0]] == undefined ? "=" : filterOperator[e[0]]
             filt.push(`${field?.name} ${op} ${dbVal}`)
         })

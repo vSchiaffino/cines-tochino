@@ -1,14 +1,16 @@
 import { Application } from "express";
 import funciones from "./routes/funciones";
 import peliculas from "./routes/peliculas";
-import salas from "./routes/salas";
+import reservas from "./routes/reservas";
+import { salasRoute } from "./routes/salas";
 import users from "./routes/users";
 
 export default function routes(app: Application)
 {
     app = funciones(app)
     app = peliculas(app)
-    app = salas(app)
+    app = salasRoute(app)
     app = users(app)
+    app = reservas(app)
     return app
 }

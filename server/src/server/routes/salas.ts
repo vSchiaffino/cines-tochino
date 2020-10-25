@@ -2,12 +2,15 @@ import { Application } from "express";
 import pool from "../database";
 import { Row } from "../database/dao/genericDao";
 import formaSala from "../database/daos/formasala";
+import reservasDAO from "../database/daos/reservas";
 import salaDAO from "../database/daos/sala";
 import { checkSUDO } from "./helpers/authorization";
+import { showRequest } from "./helpers/routeHelper";
 
-export default function salas(app: Application)
+export function salasRoute(app: Application)
 {
     app.post("/salas", async (req, res) => {
+        showRequest("newSala", req)
         if (checkSUDO(req.headers.authorization || '', res)){
             let body = req.body;
             let totalseats = body.rows * body.cols - body.corridors.length;
@@ -43,6 +46,7 @@ export default function salas(app: Application)
     })
     
     app.delete("/salas/:id", async(req, res) => {
+        showRequest("delSala", req)
         if(checkSUDO(req.headers.authorization || '', res)){
             try {
                 let err = await salaDAO.deleteById(req.params.id, pool)
@@ -61,6 +65,7 @@ export default function salas(app: Application)
     })
     
     app.get("/salas", async(req, res) => {
+        showRequest("getSalas", req)
         if(checkSUDO(req.headers.authorization || '', res)){
             try {
                 let salas = await salaDAO.getAll(pool) as any[]
@@ -74,10 +79,9 @@ export default function salas(app: Application)
     })
 
     app.get("/salas/:id", async(req, res) => {
+        showRequest("getSala", req)
         try {
-            let sala = await salaDAO.getOneById(Number(req.params.id), pool) as any
-            let formasala = await formaSala.getByFilter({idsala: req.params.id}, pool) as any[]
-            llenarFormaSala([sala], formasala)
+            let sala = await getSala(Number(req.params.id))
             return res.json(sala)
         } catch (error) {
             return res.json({ok: false, error})
@@ -85,11 +89,19 @@ export default function salas(app: Application)
     })
 
     app.put("/salas/:id", async(req, res) => {
+        showRequest("putSalas", req)
         // TODO hacer el put de salas
         res.json("Not yet")
     })
 
     return app
+}
+
+export async function getSala(id: number): Promise<any>{
+    let sala = await salaDAO.getOneById(Number(id), pool) as any
+    let formasala = await formaSala.getByFilter({idsala: id}, pool) as any[]
+    llenarFormaSala([sala], formasala)
+    return sala
 }
 
 function llenarFormaSala(salas: any[], formasalas: any[]){

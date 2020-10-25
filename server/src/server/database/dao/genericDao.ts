@@ -116,7 +116,8 @@ export class GenericDAO{
     }
 
     async getByFilter(filter: Row, pool: Pool, deleteFields: string[] = []): Promise<Row[]>{
-        return  this._deleteFields(await this._doQuery(this.model.getByFilter(filter), pool), deleteFields)
+        console.log(this.model.getByFilter(filter, {}, true))
+        return  this._deleteFields(await this._doQuery(this.model.getByFilter(filter, {}, true), pool), deleteFields)
     }
 
     async existeRecordConFiltros(filter: Row, pool: Pool): Promise<boolean>{

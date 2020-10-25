@@ -39,8 +39,9 @@ export class Hash extends Varchar{
         return true
     }
 
-    setDbVal(value: string): string {
-        return `'${crypto.createHash('sha256').update(value).digest('base64')}'`
+    setDbVal(value: string, isFilter = false): string {
+        console.log(isFilter)
+        return isFilter ? `'${value}'` : `'${crypto.createHash('sha256').update(value).digest('base64')}'`
     }
 }
 

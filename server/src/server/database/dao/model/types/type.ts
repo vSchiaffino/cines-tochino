@@ -29,7 +29,7 @@ export class Type{
         return true
     }
 
-    setDbVal(value: any) : string {
+    setDbVal(value: any, isFilter = false) : string {
         return typeof(value) == "number" ? value.toString() : `'${value}'` 
     }
 }

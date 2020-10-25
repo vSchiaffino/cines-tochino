@@ -1,0 +1,8 @@
+CREATE TABLE `cinestochino`.`reservas` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `iduser` INT UNSIGNED NOT NULL,
+  `idfuncion` INT UNSIGNED NOT NULL,
+  `row` INT UNSIGNED NOT NULL,
+  `col` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
