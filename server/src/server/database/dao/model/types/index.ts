@@ -60,10 +60,7 @@ export class Int extends Type{
 }
 
 export class Float extends Int{
-    constructor(unsigned = true,
-        nullable = false, pk = false, unique = false, ai = false){
-        super(unsigned, nullable, pk, unique, ai)
-    }
+    
 }
 
 export class ID extends Int{

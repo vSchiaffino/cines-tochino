@@ -5,6 +5,7 @@ import { Application } from 'express'
 import { checkSUDO } from './helpers/authorization';
  import { getSala } from './salas'
 import reservasDAO from '../database/daos/reservas';
+import funcionesDAO from '../database/daos/funciones';
 
 export default function funciones(app: Application)
 {
@@ -42,6 +43,16 @@ export default function funciones(app: Application)
             return res.json({ok: false, error})
         }
 
+    })
+
+    app.get('/prefuncion/:idpelicula', async (req, res) => {
+        showRequest("getPrefuncion", req)
+        try {
+            let funciones = await funcionesDAO.getByFilter({idpelicula: req.params.idpelicula}, pool)
+            return res.json({ok: true, funciones})
+        } catch (error) {
+            return res.json({ok: false, error})
+        }
     })
 
     return app

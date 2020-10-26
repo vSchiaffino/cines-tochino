@@ -13,7 +13,8 @@ let funcionesDAO = new GenericDAO(
             new Field("idsala", new Int(true, false)),
             new Field("seatprice", new Float(true, false)),
             new Field("formato", new Varchar(10, false)),
-            new Field("fechahora", new Datetime_t(false)),
+            new Field("fecha", new Datetime_t(false)),
+            new Field("hora", new Varchar(12, false))
         ]
     )
 )
