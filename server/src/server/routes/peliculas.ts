@@ -4,6 +4,7 @@ import pool from "../database";
 import peliculasDAO from "../database/daos/peliculas";
 import { showRequest } from "./helpers/routeHelper";
 import peliculasCategoriasDAO from "../database/daos/peliculas_categorias";
+import peliculasActoresDAO from "../database/daos/peliculas_actores";
 
 export default function peliculas(app: Application)
 {
@@ -11,6 +12,8 @@ export default function peliculas(app: Application)
         showRequest("getPeliculas", req)
         let peliculas = await peliculasDAO.getAll(pool)
         let peliculasCategorias = await peliculasCategoriasDAO.getAll(pool)
+        let peliculasActores = await peliculasActoresDAO.getAll(pool)
+        llenarActores(peliculas, peliculasActores)
         llenarCategorias(peliculas, peliculasCategorias)
         res.json(peliculas)
     })
@@ -47,6 +50,17 @@ function llenarCategorias(peliculas: any[], peliculasCategorias: any[]) {
         peliculasCategorias.forEach(pc => {
             if(p.id == pc.idpelicula) {
                 p.categorias.push(pc.idcategoria)
+            }
+        })
+    });
+}
+
+function llenarActores(peliculas: any[], peliculasActores: any[]) {
+    peliculas.forEach(p => {
+        p.actores = []
+        peliculasActores.forEach(pa => {
+            if(p.id == pa.idpelicula) {
+                p.actores.push(pa.idactor)
             }
         })
     });

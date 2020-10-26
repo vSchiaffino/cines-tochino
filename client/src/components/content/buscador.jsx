@@ -1,28 +1,41 @@
 import React, { Component } from 'react'
 import Buscador from '../style/buscador'
-import axios from 'axios'
+import { request } from './helpers/request'
 
-export default class BuscadorContent extends Component {
+class BuscadorContent extends Component {
     constructor(props) {
         super(props)
-        this.state = {categorias: null}
-        axios({
-            method: 'get',
-            url: 'http://localhost:3000/categorias',
-            headers: { },
-            data : ''
-        })
-        .then(res => {
-            console.log(res.data.categorias);
-            this.setState({...this.state, categorias: res.data.categorias})   
-        })
-        .catch(err => console.log(err))
+        this.state = {
+            dataCategorias: null,
+            dataActores: null,
+            dataPeliculas: null
+        }
+        try{
+            request("get", "categorias")
+                .then(res => {this.setState({...this.state, dataCategorias: res.data.categorias})})
+            request("get", "actores")
+                .then(res => {this.setState({...this.state, dataActores: res.data.actores})})
+            request("get", "peliculas")
+                .then(res => {this.setState({...this.state, dataPeliculas: res.data})})
+        }catch (error) {
+            console.log(error);
+        }
     }
-    
+
     render() {
         return (
-            this.state.categorias ? <Buscador categorias={this.state.categorias}/> : <> </>
-            
+            this.state.dataActores &&
+            this.state.dataCategorias && 
+            this.state.dataPeliculas ?
+                <Buscador
+                    dataCategorias={this.state.dataCategorias}
+                    dataActores={this.state.dataActores}
+                    dataPeliculas={this.state.dataPeliculas}
+                /> 
+                :
+                <></>
         )
     }
 }
+
+export default BuscadorContent

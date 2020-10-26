@@ -5,16 +5,8 @@ import BuscadorContent from '../../components/content/buscador'
 import { connect } from 'react-redux'
 
 class Peliculas extends Component {
-    // static propTypes = {
-    //     categoriaElegida: PropTypes.number
-    // }
-
-    constructor(props){
-        super(props)
-    }
 
     render() {
-        // console.log(this.props.categoriaElegida);
         return (
             <>
                 <div className="jumbotron" key="jumbotron">
@@ -44,7 +36,7 @@ class Peliculas extends Component {
 }
 
 const mapStateToProps = state => ({
-    categoriaElegida: state.categoriaElegida
+    filtro: state.filtro
 })
 
 export default connect(mapStateToProps, null)(Peliculas)

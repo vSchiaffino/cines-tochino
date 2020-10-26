@@ -1,0 +1,20 @@
+{
+  "name": "tochino",
+  "version": "1.0.0",
+  "description": "Código de una página web de cines.",
+  "main": "index.js",
+  "scripts": {
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vSchiaffino/cines-tochino.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vSchiaffino/cines-tochino/issues"
+  },
+  "homepage": "https://github.com/vSchiaffino/cines-tochino#readme"
+}

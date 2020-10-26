@@ -9,9 +9,9 @@ export default class CardDeck extends Component {
 
     render() {
         return (
-            <div className="card-deck">
+            <div className="card-deck" key={this.props.tresPeliculas.join("-")}>
                 {this.props.tresPeliculas.map(p => (
-                    <Card pelicula={p} key={p.id} />
+                    <Card pelicula={p} key={p.id}/>
                 ))}
             </div>
         )

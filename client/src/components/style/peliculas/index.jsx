@@ -9,41 +9,32 @@ export default class Peliculas extends Component {
 
     dividirPeliculas(peliculas) {
         let peliculasEn3 = []
-        let tres = []
-        let index = 0
-        let indexTotal = 0;
-        let maxIndex = peliculas.length - 1
-        peliculas.forEach(p => {
-            if(index == 0) {
-                tres = []
-            }
-            tres.push(p)
-            if(index == 2){
-                peliculasEn3.push(tres)
-                index = 0
-                indexTotal++
+        while(true) {
+            let l = peliculas.length
+            if(l >= 3) {
+                peliculasEn3.push(peliculas.splice(0, 3))
+                if(l === 3) {
+                    break
+                }
             }
             else{
-               index++
-               indexTotal++
+                peliculasEn3.push(peliculas.splice(0, l))
+                break
             }
-            if(maxIndex == indexTotal && index != 2){
-                peliculasEn3.push(tres)
-            }
-        })
+        }
         return peliculasEn3
     }
 
     constructor(props) {
         super(props)
-        console.log(this.peliculas);
-        this.peliculas = this.dividirPeliculas(this.props.peliculas)
     }
-
+    
     render() {
+        this.peliculas = this.dividirPeliculas(this.props.peliculas)
+        console.log("Soy style pelicula: ", this.peliculas);
         return (
             <>
-                {this.peliculas.map(tres => <TresPeliculas tresPeliculas={tres} key={tres.join("-")}/>)}
+                {this.peliculas.map(tres => <TresPeliculas key={`tp${tres.join(" ")}`} tresPeliculas={tres}/>)}
             </>
         )
     }
