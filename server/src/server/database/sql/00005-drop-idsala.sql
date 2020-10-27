@@ -1,2 +1,2 @@
-ALTER TABLE `cinestochino`.`sala` 
+ALTER TABLE `sala` 
     DROP COLUMN `idformasala`;
