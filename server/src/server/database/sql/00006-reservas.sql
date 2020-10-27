@@ -1,4 +1,4 @@
-CREATE TABLE `cinestochino`.`reservas` (
+CREATE TABLE `reservas` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `iduser` INT UNSIGNED NOT NULL,
   `idfuncion` INT UNSIGNED NOT NULL,
