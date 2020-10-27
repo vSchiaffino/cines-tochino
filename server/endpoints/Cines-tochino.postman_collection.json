@@ -726,6 +726,17 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getDatosPreFuncion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -896,6 +907,46 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "actores",
+			"item": [
+				{
+					"name": "newActor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/actores",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"actores"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getActores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/actores",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"actores"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"event": [
@@ -922,9 +973,9 @@
 	],
 	"variable": [
 		{
-			"id": "d43d5b5b-9f16-4709-b9e6-e40ff95c14d6",
+			"id": "beacae34-60e5-4d95-8450-beead71dc4d1",
 			"key": "url",
-			"value": "http://localhost:3000"
+			"value": "http://localhost:1500"
 		}
 	],
 	"protocolProfileBehavior": {}
