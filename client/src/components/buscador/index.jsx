@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Buscador from '../style/buscador'
-import { request } from './helpers/request'
+import Buscador from './style'
+import { request } from '../helpers/request'
 
 class BuscadorContent extends Component {
     constructor(props) {
@@ -10,14 +10,15 @@ class BuscadorContent extends Component {
             dataActores: null,
             dataPeliculas: null
         }
-        try{
-            request("get", "categorias")
-                .then(res => {this.setState({...this.state, dataCategorias: res.data.categorias})})
-            request("get", "actores")
-                .then(res => {this.setState({...this.state, dataActores: res.data.actores})})
-            request("get", "peliculas")
-                .then(res => {this.setState({...this.state, dataPeliculas: res.data})})
-        }catch (error) {
+    }
+
+    async componentDidMount() {
+        try {
+            let {data: {categorias: dataCategorias}} = (await request("get", "categorias"))
+            let {data: {actores: dataActores}} = await request("get", "actores")
+            let {data: dataPeliculas} = await request("get", "peliculas")
+            this.setState({...this.state, dataCategorias, dataActores, dataPeliculas})
+        } catch (error) {
             console.log(error);
         }
     }

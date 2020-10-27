@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import { TextField, MenuItem } from "@material-ui/core"
+import { TextField } from "@material-ui/core"
 import { Autocomplete } from "@material-ui/lab"
 
 import { elegirFiltro } from '../../redux/actions'

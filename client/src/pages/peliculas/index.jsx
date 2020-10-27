@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import PeliculasContent from '../../components/content/peliculas'
-import BuscadorContent from '../../components/content/buscador'
+import PeliculasContent from '../../components/peliculas'
+import BuscadorContent from '../../components/buscador'
 import { connect } from 'react-redux'
 
 class Peliculas extends Component {
-
     render() {
         return (
             <>
@@ -26,7 +24,7 @@ class Peliculas extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="container mt-5" key="container">
+                <div className="container mt-5">
                     <PeliculasContent />
                 </div>
 

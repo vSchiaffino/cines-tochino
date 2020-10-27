@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import {request} from './helpers/request'
+import {request} from '../helpers/request'
 import { connect } from 'react-redux'
-// import PropTypes from 'prop-types'
-import Peliculas from '../style/peliculas'
+import Peliculas from './style/peliculas'
 
 class PeliculasContent extends Component {
     constructor(props) {
@@ -12,31 +11,25 @@ class PeliculasContent extends Component {
         }
     }
 
-    async traerPeliculas() {
-        return new Promise((resolve, reject) => {
-            try {
-                request("get", "peliculas")
-                    .then(res => {
-                        resolve(res.data)
-                    })
-            } catch (error) {
-                reject(error);
-            }
-        })
-    }
-
     async componentDidMount() {
-        this.setState({...this.state, peliculas: await this.traerPeliculas()})
+        try{
+            let peliculas = (await request('get', 'peliculas')).data
+            this.setState({...this.state, peliculas})
+        }
+        catch(error){
+            console.log(error);
+        }
     }
 
     render() {
         return (
             this.state.peliculas &&
-                <Peliculas peliculas={[...this.aplicarFiltro(this.state.peliculas)]} />
+                <Peliculas peliculas={this.aplicarFiltro(this.state.peliculas)} />
         )
     }
 
-    aplicarFiltro = (peliculas) => {
+    aplicarFiltro = (peliculasState) => {
+        let peliculas = [...peliculasState]
         if( (this.props.filtro.categorias.length > 0) ||
             (this.props.filtro.actores.length > 0) ||
             (this.props.filtro.pelicula > 0) ) {

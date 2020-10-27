@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 export default class Card extends Component {
+    static propTypes = {
+        pelicula: PropTypes.object.isRequired
+    }
+
     constructor(props){
         super(props)
         this.state = {clicked: false}

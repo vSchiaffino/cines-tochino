@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
-import TresPeliculas from './tresPeliculas'
+import PropTypes from 'prop-types'
+import Deck from './deck'
 
 export default class Peliculas extends Component {
-    // static propTypes = {
-    //     peliculas: PropTypes.arrayOf(PropTypes.object)
-    // }
+    static propTypes = {
+        peliculas: PropTypes.arrayOf(PropTypes.object)
+    }
 
     dividirPeliculas(peliculas) {
         let peliculasEn3 = []
@@ -34,7 +34,7 @@ export default class Peliculas extends Component {
         console.log("Soy style pelicula: ", this.peliculas);
         return (
             <>
-                {this.peliculas.map(tres => <TresPeliculas key={`tp${tres.join(" ")}`} tresPeliculas={tres}/>)}
+                {this.peliculas.map(tres => <Deck key={`tp${tres.join(" ")}`} tresPeliculas={tres}/>)}
             </>
         )
     }

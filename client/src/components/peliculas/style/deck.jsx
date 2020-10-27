@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-// import PropTypes from 'prop-types'
-import Card from './pelicula'
+import PropTypes from 'prop-types'
+import Card from './card'
 
-export default class CardDeck extends Component {
-    // static propTypes = {
-    //     tresPeliculas: PropTypes.arrayOf(PropTypes.object)
-    // }
+export default class Deck extends Component {
+    static propTypes = {
+        tresPeliculas: PropTypes.arrayOf(PropTypes.object)
+    }
 
     render() {
         return (
