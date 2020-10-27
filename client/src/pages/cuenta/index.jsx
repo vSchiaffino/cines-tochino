@@ -4,9 +4,6 @@ export default class Cuenta extends Component {
     // static propTypes = {
     //     prop: PropTypes
     // }
-constructor(props) {
-    super(props)
-}
     render() {
         return (
             <> 
@@ -17,7 +14,7 @@ constructor(props) {
                     <h1 className="display-4 ">Datos</h1>
                     <div className="media">
 
-                            <img className="card-img-left rounded-circle"  width="200" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" />
+                            <img className="card-img-left rounded-circle"  width="200" alt={"Foto de perfil"} src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" />
                             <div className="container flex-column ">
                                 <h3 className="font-weight-bold col-10"> Nombre: <span className="font-weight-normal"> facundo</span></h3>
                                 <h3 className="font-weight-bold col-10"> Usuario: <span className="font-weight-normal"> facuzer</span></h3>

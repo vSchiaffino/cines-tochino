@@ -26,7 +26,7 @@ export default class Pelicula extends Component {
                     sm={smSize}
                     alignItems='center'
                 >
-                    <img class="img-thumbnail rounded float-left" src={this.props.pelicula.img} />
+                    <img class="img-thumbnail rounded float-left"  alt={`Imagen de la pelicula ${this.props.pelicula.titulo}`} src={this.props.pelicula.img} />
                 </Grid>
                 <Grid
                   item

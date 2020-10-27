@@ -19,7 +19,7 @@ export default class Card extends Component {
             :
             <div role="button" className="card mb-4"
             onClick={() => this.setState({...this.state, clicked: true})}>
-                <img className="card-img-top" width="100%" src={this.props.pelicula.img} />
+                <img className="card-img-top" alt={`Imagen de la pelicula ${this.props.pelicula.titulo}`} width="100%" src={this.props.pelicula.img} />
                 <div className="card-body">
                     <h3 className="card-title">{this.props.pelicula.titulo}</h3>
                     {/* <p className="card-text">{p.texto}</p> */}
