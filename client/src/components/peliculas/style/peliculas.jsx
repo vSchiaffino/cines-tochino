@@ -24,10 +24,6 @@ export default class Peliculas extends Component {
         }
         return peliculasEn3
     }
-
-    constructor(props) {
-        super(props)
-    }
     
     render() {
         this.peliculas = this.dividirPeliculas(this.props.peliculas)

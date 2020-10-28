@@ -44,7 +44,7 @@ class PeliculasContent extends Component {
                 p.actores.forEach(a => {
                     if(this.props.filtro.actores.includes(a)) actorEstaEnPelicula = true;
                 })
-                return  p.id == this.props.filtro.pelicula ||
+                return  p.id === this.props.filtro.pelicula ||
                 actorEstaEnPelicula ||
                 categoriaEstaEnPelicula
             })
@@ -55,7 +55,7 @@ class PeliculasContent extends Component {
         
 
 let mapStateToProps = state => ({
-    filtro: state.filtro,
+    filtro: state.filtroPeliculas,
 })
 
 export default connect(mapStateToProps, null)(PeliculasContent)

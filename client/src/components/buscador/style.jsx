@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import { TextField } from "@material-ui/core"
 import { Autocomplete } from "@material-ui/lab"
 
-import { elegirFiltro } from '../../redux/actions'
+import { elegirFiltroPeliculas } from '../../redux/actions'
 // import { dispatch } from 'react-redux'
 
 class Buscador extends Component {
@@ -77,11 +77,11 @@ class Buscador extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    dispatchFiltro: (filtro) => dispatch(elegirFiltro(filtro))
+    dispatchFiltro: (filtro) => dispatch(elegirFiltroPeliculas(filtro))
 })
 
 const mapStateToProps = state => ({
-    filtro: state.filtro
+    filtro: state.filtroPeliculas
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Buscador)
