@@ -7,10 +7,15 @@ import { reducer } from './redux/reducer';
 
 
 const initialState = {
-  filtro: {
+  filtroPeliculas: {
     categorias: [],
     actores: [],
     pelicula: 0
+  },
+  filtroFunciones: {
+    formatos: [],
+    fecha: '',
+    hora: ''
   }
 }
 

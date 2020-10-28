@@ -55,7 +55,7 @@ class PeliculasContent extends Component {
         
 
 let mapStateToProps = state => ({
-    filtro: state.filtro,
+    filtro: state.filtroPeliculas,
 })
 
 export default connect(mapStateToProps, null)(PeliculasContent)

@@ -1,21 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FiltroFunciones from './style'
-import { request } from '../helpers/request'
-
 
 export default class FiltroFuncionesContent extends Component {
     static propTypes = {
-        idfuncion: PropTypes.string.isRequired
+        funciones: PropTypes.object.isRequired
     }
 
     constructor(props) {
         super(props)
-        this.state = {
-            formatos: null,
-            fechas: null,
-            horas: null
-        }
+        let {formatos, fechas, horas} = this.separarDatosFunciones(this.props.funciones)
+        this.formatos = formatos
+        this.fechas = fechas
+        this.horas = horas
     }
 
     separarDatosFunciones(funciones) {
@@ -48,23 +45,12 @@ export default class FiltroFuncionesContent extends Component {
         return {formatos, fechas, horas}
     }
 
-    async componentDidMount() {
-        try {
-            let data = await request('get', `prefuncion/${this.id}`)
-            let funciones = data.data.funciones;
-            let {formatos, fechas, horas} = this.separarDatosFunciones(funciones)
-            this.setState({...this.state, formatos, fechas, horas})
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     render() {
         return (
             <FiltroFunciones 
-              formatos={this.state.formatos}
-              fechas={this.state.fechas}
-              horas={this.state.horas} />
+              formatos={this.formatos}
+              fechas={this.fechas}
+              horas={this.horas} />
         )
     }
 }
