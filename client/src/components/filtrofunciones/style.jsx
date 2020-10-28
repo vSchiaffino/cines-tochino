@@ -30,9 +30,8 @@ class FiltroFunciones extends Component {
             state.hora = ''
         }
         this.setState(state)
-        this.props.dispatchFiltro({formatos: this.state.formatos,
-                                   fecha: this.state.fecha,
-                                   hora: this.state.hora})
+        let {formatos, fecha, hora} = state
+        this.props.dispatchFiltro({formatos, fecha, hora})
     }
 
     render() {
