@@ -1,15 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Grid } from '@material-ui/core'
+import { Redirect } from 'react-router-dom'
 
 export default class FuncionesFiltradas extends Component {
     static propTypes = {
         funciones: PropTypes.arrayOf(PropTypes.object)
     }
 
+    constructor(props){
+        super(props)
+        this.state = {
+            redireccion: null
+        }
+    }
+
     render() {
         let pClass = "card-text mb-1"
         return (
+            this.state.redireccion ?
+               <Redirect to={`/funcion/${this.state.redireccion}`}></Redirect> 
+            :
             <>
                 <h3 class="mb-3">Funciones disponibles: </h3>
                 <Grid container spacing={4} alignItems='center' alignContent='center' justify="center">
@@ -25,7 +36,7 @@ export default class FuncionesFiltradas extends Component {
                                     <p class={pClass}>hora: <b>{f.hora}</b></p>
                                     <hr/>
                                     <Grid container alignItems='center' alignContent='center'justify="center">
-                                        <button class="btn btn-primary rounded">Reservar asientos</button>
+                                        <button onClick={() => this.setState({redireccion: f.id})} class="btn btn-primary rounded">Reservar asientos</button>
                                     </Grid>
                                 </div>
                             </div>

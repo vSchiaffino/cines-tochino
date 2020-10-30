@@ -29,7 +29,17 @@ export default class FiltroFuncionesContent extends Component {
             if (!fechasYaPuestas.includes(f.fecha)){
                 fechasYaPuestas.push(f.fecha)
                 // TODO dia de la semana
-                fechas.push({label: fechavalue.toLocaleDateString(), value: fechavalue})
+                let days = {
+                    0: 'Domingo',
+                    1: 'Lunes',
+                    2: 'Martes',
+                    3: 'Miercoles',
+                    4: 'Jueves',
+                    5: 'Viernes',
+                    6: 'Sabado',
+                }
+                let dia = days[fechavalue.getDay()]
+                fechas.push({label: dia + " " + fechavalue.toLocaleDateString(), value: fechavalue})
             } 
             // Horarios
             if(!horas.hasOwnProperty(fechavalue)) {

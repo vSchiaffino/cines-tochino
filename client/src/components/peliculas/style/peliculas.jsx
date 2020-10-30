@@ -27,7 +27,6 @@ export default class Peliculas extends Component {
     
     render() {
         this.peliculas = this.dividirPeliculas(this.props.peliculas)
-        console.log("Soy style pelicula: ", this.peliculas);
         return (
             <>
                 {this.peliculas.map(tres => <Deck key={`tp${tres.join(" ")}`} tresPeliculas={tres}/>)}
