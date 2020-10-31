@@ -5,7 +5,8 @@ import { request } from '../helpers/request'
 
 export default class PeliculaContent extends Component {
     static propTypes = {
-        id: PropTypes.string.isRequired
+        id: PropTypes.string.isRequired,
+        hideData: PropTypes.bool
     }
 
     constructor(props){
@@ -27,7 +28,7 @@ export default class PeliculaContent extends Component {
     render() {
         return (
             this.state.pelicula ?
-                <Pelicula pelicula={this.state.pelicula}/>
+                <Pelicula hideData={this.props.hideData} pelicula={this.state.pelicula}/>
             :
             <></>
         )

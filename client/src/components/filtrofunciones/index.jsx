@@ -28,7 +28,6 @@ export default class FiltroFuncionesContent extends Component {
             // Fechas
             if (!fechasYaPuestas.includes(f.fecha)){
                 fechasYaPuestas.push(f.fecha)
-                // TODO dia de la semana
                 let days = {
                     0: 'Domingo',
                     1: 'Lunes',
