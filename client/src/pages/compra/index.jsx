@@ -20,12 +20,7 @@ export default class Compra extends Component {
                     </Grid>
                     
                 </Grid>
-                <hr></hr>
-                <Grid className="media mb-3" container justify="center" alignItems="center" alignContent="center">
-                    <Grid  className="container flex-column mb-3 " item container lg={5} sm={8}  xs={10} md={6} justify="center">
-                            <button className="btn btn-primary rounded shadow" onClick={() => console.log("compré")}> Comprar </button>
-                    </Grid>
-                </Grid>
+
             </div>
             </div>
         )

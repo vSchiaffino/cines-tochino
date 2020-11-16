@@ -9,10 +9,23 @@ import EventSeatIcon from '@material-ui/icons/EventSeat';
 import { Grid} from "@material-ui/core";
 
 export default class DetallesCompra extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            comprado:false
+
+        }
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick(event){
+        this.setState({...this.state, comprado:true})
+    }
 
 
     render(){
         return(
+            <>
             <div className=" shadow container">
                                     <Grid container justify='center ' alignContent='center' alignItems='center'>
                                         <Grid xs={1} item className="text-center">
@@ -88,6 +101,16 @@ export default class DetallesCompra extends Component {
                                     <hr/>
                                 </div>
 
+                                <hr></hr>
+                                <Grid className="media mb-3" container justify="center" alignItems="center" alignContent="center">
+                                    <Grid  className="container flex-column mb-3 " item container lg={5} sm={8}  xs={10} md={6} justify="center">
+                                            <button className="btn btn-primary rounded shadow" onClick={this.handleClick} disabled={this.state.comprado}> Comprar </button>
+                                            
+                                    </Grid>
+                                    {this.state.comprado ? <a className="text-success" style={{marginLeft:"5%"}} href="/reservas">Gracias por tu compra, puede tocar aquí para ver tus reservas</a> : <></> }
+                                    
+                                </Grid>
+                        </>
         )
     }
 
