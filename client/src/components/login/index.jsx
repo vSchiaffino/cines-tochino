@@ -61,10 +61,10 @@ export default class FormLogin extends Component {
                 </Grid>
                 <Grid className="mt-3" item>
 
-                    <TextField name="password" label="Contraseña"  value={this.state.password} onChange={this.handleInputChange} variant="outlined" />
+                    <TextField name="password" label="Contraseña" type="password" value={this.state.password} onChange={this.handleInputChange} variant="outlined" />
 
                 </Grid>
-                <a className="btn btn-primary btn-lg" role="button" onClick={this.handleSubmit}>
+                <a className="btn btn-primary btn-lg mt-2"  style={{width:"225px"}} role="button" onClick={this.handleSubmit}>
                                 Login 
                 </a>
             {this.state.error != ''  &&  <p className="text-danger">{this.state.error}</p> }
