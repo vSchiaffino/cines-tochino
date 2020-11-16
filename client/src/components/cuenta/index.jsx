@@ -19,9 +19,9 @@ export default class DetallesCuenta extends Component {
 
     async componentDidMount() {
         try {
-            let res = await request('post', `users/login`,{'Content-Type': 'application/x-www-form-urlencoded'}, qs.stringify({usuario: 'facuzer', contrasena: 'pepito123'}))
-            console.log(res)
-            this.setState({...this.state, user: res.data.user})
+            let state = this.state;
+            state.user = JSON.parse(localStorage.getItem("user"));
+            this.setState(state);
         } catch (error) {
             console.log(error);
         }
