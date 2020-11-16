@@ -5,7 +5,8 @@ import { Grid } from '@material-ui/core'
 
 export default class Pelicula extends Component {
     static propTypes = {
-        pelicula: PropTypes.object.isRequired
+        pelicula: PropTypes.object.isRequired,
+        hideData: PropTypes.bool
     }
 
     render() {
@@ -13,6 +14,9 @@ export default class Pelicula extends Component {
         let lgSize = 6
         let smSize = 12
         return (
+            this.props.hideData === true ? 
+                <Grid item xs={12} md={6}><img class="img-thumbnail rounded float-left"  alt={`Imagen de la pelicula ${this.props.pelicula.titulo}`} src={this.props.pelicula.img} /></Grid>
+            :
             <Grid 
               container
               spacing={2}
@@ -28,6 +32,7 @@ export default class Pelicula extends Component {
                 >
                     <img class="img-thumbnail rounded float-left"  alt={`Imagen de la pelicula ${this.props.pelicula.titulo}`} src={this.props.pelicula.img} />
                 </Grid>
+                {this.props.hideData !== true && 
                 <Grid
                   item
                   lg={lgSize}
@@ -51,6 +56,7 @@ export default class Pelicula extends Component {
                         </div>
                     </div>
                 </Grid>
+}
             </Grid>
         )
     }
