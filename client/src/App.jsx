@@ -6,6 +6,8 @@ import Cuenta from './pages/cuenta'
 import Nosotros from './pages/nosotros'
 import Nav from './pages/nav'
 import Funcion from './pages/funcion'
+import Login from './pages/login'
+import Register from './pages/register'
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -22,6 +24,8 @@ export default class App extends Component {
             <Route path="/nosotros" component={Nosotros} />
             <Route path="/pelicula/:id" component={PeliculaDetalle} /> 
             <Route path="/funcion/:id" component={Funcion} />
+            <Route path="/login/" component={Login} />
+            <Route path="/register/" component={Register} />
           </Switch>
         </BrowserRouter>
       </>
