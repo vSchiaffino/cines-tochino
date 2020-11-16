@@ -9,6 +9,11 @@ export default function users(app: Application)
 {
     app.post("/users", async (req, res) => {
         showRequest("postUsers", req)
+        // me fijo si existen users
+        let users = await usersDAO.getByFilter({usuario: req.body.usuario}, pool);
+        if(users.length >= 1){
+            res.json({ok: false, error: "Ya existe un usuario con ese nombre"})
+        }
         req.body["token"] = `${process.env.SUDO_KEY}.${req.body["usuario"]}.${req.body["contrasena"]}.${Date.now()}`
         let ret = await usersDAO.insertOne(req.body, pool)
         res.json({ok: ret == "", error: ret})
