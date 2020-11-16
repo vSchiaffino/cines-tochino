@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-export default class Nav extends Component {
+class Nav extends Component {
     render() {
-        
         return (
             <>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -21,17 +21,23 @@ export default class Nav extends Component {
                                 <Link className="nav-link" to="/peliculas">Peliculas</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/cuenta">Mi cuenta</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/reservas">Reservas</Link>
-                            </li>
-                            <li className="nav-item">
                                 <Link className="nav-link" to="/nosotros">Quienes somos</Link>
                             </li>
+                            {this.props.logged ? 
+                            <>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/reservas">Reservas</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/cuenta">Mi cuenta</Link>
+                                </li>
+                            </>
+                            :
                             <li className="nav-item">
                                 <Link className="nav-link" to="/login">Login</Link>
+                            
                             </li>
+                            }
                         </ul>
                     </div>
                 </nav>
@@ -39,3 +45,9 @@ export default class Nav extends Component {
         )
     }
 }
+
+let mapStateToProps = state => ({
+    logged: state.logged
+})
+
+export default connect(mapStateToProps, null)(Nav)

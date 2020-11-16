@@ -5,6 +5,8 @@ import { createStore } from 'redux'
 import App from './App';
 import { reducer } from './redux/reducer';
 
+let user = localStorage.getItem("user")
+let logged = user !== null;
 
 const initialState = {
   filtroPeliculas: {
@@ -16,7 +18,9 @@ const initialState = {
     formatos: [],
     fecha: '',
     hora: ''
-  }
+  },
+  logged,
+  user
 }
 
 const store = createStore(reducer, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())

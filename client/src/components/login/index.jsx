@@ -3,9 +3,11 @@ import { Grid , TextField }  from '@material-ui/core'
 import { request } from '../../components/helpers/request'
 import qs from 'qs'
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { login } from '../../redux/actions'
 
 
-export default class FormLogin extends Component {
+class FormLogin extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,7 +19,6 @@ export default class FormLogin extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.logueado = localStorage.getItem("user") !== null
-        console.log("user " + localStorage.getItem("user"));
     }
     handleInputChange(event)
     {
@@ -34,6 +35,7 @@ export default class FormLogin extends Component {
                 // buen login
                 localStorage.setItem("user", JSON.stringify(data.user));
                 this.setState({...this.state, redirect: true})
+                this.props.dispatchLogin(data.user);
             }
             else{
                 // mal login
@@ -71,3 +73,9 @@ export default class FormLogin extends Component {
             </>
     )}
 }   
+
+const mapDispatchToProps = dispatch => ({
+    dispatchLogin: (user) => dispatch(login(user))
+})
+
+export default connect(null, mapDispatchToProps)(FormLogin)
