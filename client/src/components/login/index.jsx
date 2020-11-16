@@ -38,7 +38,7 @@ export default class FormLogin extends Component {
         <form onSubmit={this.handleSubmit}>  
             <Grid className="mt-3" item>    
 
-                <TextField  name="user" label="Nombre de usuario"  value={this.state.user} onChange={this.handleInputChange} variant="outlined" />
+                <TextField name="user" label="Nombre de usuario"  value={this.state.user} onChange={this.handleInputChange} variant="outlined" />
 
             </Grid>
             <Grid className="mt-3" item>

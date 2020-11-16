@@ -14,7 +14,7 @@ export default class Login extends Component {
                 <Grid className="media mb-3" container justify="center" alignItems="center" alignContent="center">
                     <Grid  className="container flex-column " item container lg={3} sm={5}  xs={8} md={3} justify="center">
                         <FormLogin/>
-                        <a style={{marginLeft:"13%"}} href="/register">¿Todavía no tenés una cuenta?</a>
+                        <a style={{marginLeft:"5%"}}  href="/register">¿Todavía no tenés una cuenta?</a>
                 
                     </Grid>
                 </Grid>

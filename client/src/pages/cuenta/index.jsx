@@ -5,9 +5,7 @@ import DetallesCuenta from '../../components/cuenta'
 
  
 export default class Cuenta extends Component {
-    static propTypes = {
-         prop: PropTypes
-     }
+
  
 
     render() {

@@ -8,6 +8,8 @@ import Nav from './pages/nav'
 import Funcion from './pages/funcion'
 import Login from './pages/login'
 import Register from './pages/register'
+import Reservas from './pages/reservas'
+import Compra from './pages/compra'
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -26,6 +28,8 @@ export default class App extends Component {
             <Route path="/funcion/:id" component={Funcion} />
             <Route path="/login/" component={Login} />
             <Route path="/register/" component={Register} />
+            <Route path="/reservas/" component={Reservas} />
+            <Route path="/compra/" component={Compra} />
           </Switch>
         </BrowserRouter>
       </>
